@@ -1,0 +1,93 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class RankupBar : MonoBehaviour
+{
+
+    public int max = 10;
+    private bool fillUp = false;
+    public Material mat;
+    public float fillAmount = 0.05f;
+    public float fillPercentage = 0f;
+    public Image[] fillImages;
+    private Color defaultFillColor;
+    private float maxRange;
+    public Text divisionText;
+    public Text leagueText;
+    private float initialFillPercentage;
+    public string title;
+    void Start()
+    {
+        maxRange = mat.GetFloat("_Arcrange");
+        initialFillPercentage = mat.GetFloat("_Fillpercentage");
+        fillPercentage = initialFillPercentage;
+        mat.SetFloat("_Fillpercentage", fillPercentage);
+        defaultFillColor = fillImages[1].color;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    fillUp = true;
+        //}
+        //if (Input.GetKeyDown(KeyCode.D))
+        //{
+        //    reset();
+        //}
+    }
+
+    void FixedUpdate()
+    {
+        //if (fillUp) {
+        fillUp = false;
+
+        //FILL UP
+        //fillPercentage += Random.Range(0.5f, 1.5f) * fillAmount;
+        fillPercentage = Mathf.Clamp(fillPercentage, 0f, 1f);
+        mat.SetFloat("_Fillpercentage", fillPercentage);
+
+        //ACTIVATE CHECKPOINTS
+        int checkpoint = (int)(fillPercentage * max);
+        fillImages[checkpoint].color = Color.white;
+        if (checkpoint >= max - 1)
+        {
+            //divisionText.gameObject.SetActive(false);
+            leagueText.text = title + " Max";
+        }
+        else
+        {
+            //divisionText.gameObject.SetActive(true);
+            leagueText.text = title;
+        }
+        //divisionText.text = "Posición " + (fillImages.Length - checkpoint - 1).ToString();
+        divisionText.text = "Posición " + (checkpoint).ToString();
+        //}
+    }
+
+    //private void OnApplicationQuit()
+    //{
+    //    reset();
+    //    fillPercentage = initialFillPercentage;
+    //    mat.SetFloat("_Fillpercentage", fillPercentage);
+    //}
+
+    //private void reset()
+    //{
+    //    //RESET PERCENTAGE
+    //    fillPercentage = 0f;
+    //    mat.SetFloat("_Fillpercentage", fillPercentage);
+    //    //RESET CHECKPOINTS COLOR
+    //    for (int i = 0; i < fillImages.Length; i++)
+    //    {
+    //        fillImages[i].color = defaultFillColor;
+    //    }
+    //    //RESET TEXT
+    //    leagueText.text = "Diamond";
+    //    divisionText.gameObject.SetActive(true);
+    //    divisionText.text = "Division 6";
+    //}
+}
