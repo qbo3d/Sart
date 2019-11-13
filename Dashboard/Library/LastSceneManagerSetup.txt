@@ -1,4 +1,1 @@
-sceneSetups:
-- path: Assets/Graphy - Ultimate Stats Monitor/Scene/Main.unity
-  isLoaded: 1
-  isActive: 1
+sceneSetups: []
