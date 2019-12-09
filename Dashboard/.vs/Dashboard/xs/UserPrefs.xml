@@ -1,17 +1,11 @@
 ﻿<Properties StartupConfiguration="{F7B71ABA-3CB1-FEB3-C11B-2F0FC37912CE}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs">
-    <Files>
-      <File FileName="Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" Line="99" Column="10" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/macbook/Documents/GitHub/Sart/Dashboard/Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" relfile="Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" line="99" column="1" />
-      <Breakpoint file="/Users/macbook/Documents/GitHub/Sart/Dashboard/Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" relfile="Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" line="66" column="1" />
-      <Breakpoint file="/Users/macbook/Documents/GitHub/Sart/Dashboard/Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" relfile="Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" line="69" column="1" />
+      <Breakpoint file="/Users/macbook/Documents/GitHub/Sart/Dashboard/Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" relfile="Assets/Graphy - Ultimate Stats Monitor/Scripts/UI/Instruments/DashboardController.cs" line="109" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />

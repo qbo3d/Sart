@@ -12,6 +12,7 @@ public class DashboardController : MonoBehaviour
 
     SerialPort myPort;     [SerializeField] private Dropdown myDrop;
     [SerializeField] private Button conectarBtn;     [SerializeField] private Button desconectarBtn;
+    [SerializeField] private Text matrix;
     bool isConnected = false;
 
     public G_RpmMonitor EGT;
@@ -54,7 +55,7 @@ public class DashboardController : MonoBehaviour
 
     //Split
     string n_s = "EGT = 21.34";
-    string name;
+    //string name;
 
     // Use this for initialization
     void Start()
@@ -92,46 +93,55 @@ public class DashboardController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        string linea;
+        string test = "";
 
-        if (isConnected)         {             try             {                 Debug.Log(myPort.ReadLine());
+        matrix.text += "\n18400\t1\t0\t20.4\t22.7\t0\t2485.8\t4\t2.5\t7.0\t0\t0.0\t2001\t1642\t1.75\t0.000\t8.74\t0.0040\t1936\t0\t29\t42\r";
+        if (isConnected)         {             try             {
+                linea = myPort.ReadLine();                 Debug.Log(linea);
 
-                if (myPort.ReadLine().Trim().Split(char.Parse("="))[0].Equals("EGT"))
+                matrix.text += test;
+
+                test = linea.Trim().Split(char.Parse("\t"))[0];
+
+                if (linea.Trim().Split(char.Parse("="))[0].Equals("EGT"))
                 {
-                    EGT_data = float.Parse(myPort.ReadLine().Split('=')[1]);
+                    EGT_data = float.Parse(linea.Split('=')[1]);
                 }
-                else if (myPort.ReadLine().Trim().Split(char.Parse("="))[0].Equals("CGT"))
+                else if (linea.Trim().Split(char.Parse("="))[0].Equals("CGT"))
                 {
-                    CGT_data = float.Parse(myPort.ReadLine().Split('=')[1]);
+                    CGT_data = float.Parse(linea.Split('=')[1]);
                 }
 
                 t = t + 100;
-        //EGT_data = EGT_data < 50f ? EGT_data + Random.Range(0.01f, 0.05f) : 0;
-        //CGT_data = CGT_data < 50f ? CGT_data + Random.Range(0.01f, 0.05f) : 0;
-        rpm = rpm < 5000 ? rpm + Random.Range(1f,5f) : 0;
-        altm = altm < 35000 ? altm + Random.Range(0.1f, 0.5f) : 0;
-        pitot = pitot < 200 ? pitot + Random.Range(0.1f, 0.5f) : 0;
-        numAltR = numAltR < 5 ? numAltR + Random.Range(0.1f, 0.5f) : 0;
-        Cck = Cck < 7 ? Cck + Random.Range(0.1f, 0.5f) : 0;
-        Cck_L = Cck_L < 7 ? Cck_L + Random.Range(0.1f, 0.5f) : 0;
-        Aj_F = Aj_F < 2 ? Aj_F + Random.Range(0.1f, 0.5f) : 0;
-        check = check < 2 ? check + Random.Range(0.1f, 0.5f) : 0;
-        Gal = Gal < 10 ? Gal + Random.Range(0.001f, 0.005f) : 0;
-        Is = Is < 10 ? Is + Random.Range(0.001f, 0.005f) : 0;
-        Vs = Vs < 100 ? EGT_data + Random.Range(0.1f, 0.5f) : 0;
-        mAh = mAh < 100 ? mAh + Random.Range(0.1f, 0.5f) : 0;
-        Pwm_Rpm = Pwm_Rpm < 3000 ? Pwm_Rpm + Random.Range(0.1f, 0.5f) : 0;
-        c_alarm = c_alarm < 100 ? c_alarm + Random.Range(0.1f, 0.5f) : 0;
+                //EGT_data = EGT_data < 50f ? EGT_data + Random.Range(0.01f, 0.05f) : 0;
+                //CGT_data = CGT_data < 50f ? CGT_data + Random.Range(0.01f, 0.05f) : 0;
+                rpm = rpm < 5000 ? rpm + Random.Range(1f,5f) : 0;
+                altm = altm < 35000 ? altm + Random.Range(0.1f, 0.5f) : 0;
+                pitot = pitot < 200 ? pitot + Random.Range(0.1f, 0.5f) : 0;
+                numAltR = numAltR < 5 ? numAltR + Random.Range(0.1f, 0.5f) : 0;
+                Cck = Cck < 7 ? Cck + Random.Range(0.1f, 0.5f) : 0;
+                Cck_L = Cck_L < 7 ? Cck_L + Random.Range(0.1f, 0.5f) : 0;
+                Aj_F = Aj_F < 2 ? Aj_F + Random.Range(0.1f, 0.5f) : 0;
+                check = check < 2 ? check + Random.Range(0.1f, 0.5f) : 0;
+                Gal = Gal < 10 ? Gal + Random.Range(0.001f, 0.005f) : 0;
+                Is = Is < 10 ? Is + Random.Range(0.001f, 0.005f) : 0;
+                Vs = Vs < 100 ? EGT_data + Random.Range(0.1f, 0.5f) : 0;
+                mAh = mAh < 100 ? mAh + Random.Range(0.1f, 0.5f) : 0;
+                Pwm_Rpm = Pwm_Rpm < 3000 ? Pwm_Rpm + Random.Range(0.1f, 0.5f) : 0;
+                c_alarm = c_alarm < 100 ? c_alarm + Random.Range(0.1f, 0.5f) : 0;
 
-        EGT.ReservedRpm = EGT_data;
-        CGT.ReservedRpm = CGT_data;
-        Altimeter.CurrentMSL = altm;
-        Airspeed.MPH = pitot;
-        Tachometer.CurrentRPM = rpm;
-        Fuel.fillPercentage = Gal / 10;
-        Batt.fillPercentage = Is / 10;
+                EGT.ReservedRpm = EGT_data;
+                CGT.ReservedRpm = CGT_data;
+                Altimeter.CurrentMSL = altm;
+                Airspeed.MPH = pitot;
+                Tachometer.CurrentRPM = rpm;
+                Fuel.fillPercentage = Gal / 10;
+                Batt.fillPercentage = Is / 10;
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
+                Debug.LogError(ex.ToString());
             }
         }
     }
